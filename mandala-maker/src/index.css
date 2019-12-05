@@ -1,4 +1,14 @@
+/* color palette
+dark aqua #25CED1
+white #FFF
+beige/cream #FCEADE
+orange #FF8A5B
+dark magenta #EA526F
+*/
+
+
 body {
+  background-color: #ffffff;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
