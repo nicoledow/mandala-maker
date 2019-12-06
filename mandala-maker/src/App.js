@@ -1,14 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Canvas from './Containers/Canvas';
 import Navbar from './Components/Navbar';
+import Toolbar from './Components/Toolbar';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Canvas />
+      <Toolbar />
     </div>
   );
 }
