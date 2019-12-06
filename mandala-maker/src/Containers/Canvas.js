@@ -52,9 +52,9 @@ class Canvas extends React.Component {
             <canvas ref="canvas" 
             height={window.innerHeight * 0.8} 
             width={window.innerWidth * 0.8}
-            onMouseDown={e => this.handleMouseDown(e)}
-            onMouseUp={this.handleMouseUp}
-            onMouseMove={e => this.handleMouseMove(e)}
+            onMouseDown={e => this.startPosition(e)}
+            onMouseUp={e => this.finishedPosition(e)}
+            onMouseMove={e => this.draw(e)}
             >
             </canvas>
         )
