@@ -28,13 +28,24 @@ export default class Canvas extends React.Component {
     }
 
     draw = e => {
+       const canvas = this.refs.canvas;
+       let {x, y} = this.getMousePosition(canvas, e);
+       debugger; 
        const ctx = this.state.ctx;
        if (this.state.drawing === true) {
-           ctx.lineTo(e.clientX, e.clientY);
+           ctx.lineTo(x, y);
            ctx.stroke();
            ctx.beginPath();
-           ctx.moveTo(e.clientX, e.clientY);
+           ctx.moveTo(x, y);
        }
+    }
+
+    getMousePosition = (canvas, evt) => {
+            let rect = canvas.getBoundingClientRect();
+            return {
+              x: evt.clientX - rect.left,
+              y: evt.clientY - rect.top
+            };
     }
 
     render() {
@@ -44,3 +55,11 @@ export default class Canvas extends React.Component {
         )
     }
 }
+
+// function getMousePos(canvas, evt) {
+//     var rect = canvas.getBoundingClientRect();
+//     return {
+//       x: evt.clientX - rect.left,
+//       y: evt.clientY - rect.top
+//     };
+// }
