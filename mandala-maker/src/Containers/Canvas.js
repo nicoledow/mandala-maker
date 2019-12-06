@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class Canvas extends React.Component {
+class Canvas extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -48,9 +49,22 @@ export default class Canvas extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return(
             <canvas ref="canvas" height={window.innerHeight * 0.8} width={window.innerWidth * 0.8}>
             </canvas>
         )
     }
 }
+
+const mapStateToProps = state => {
+  return { shapes: state.shapes }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+      addShape: shape => dispatch({ type: 'ADD_SHAPE', shape }),
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Canvas);
