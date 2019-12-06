@@ -6,16 +6,13 @@ class Canvas extends React.Component {
         super();
         this.state = {
             ctx: {},
-            drawing: false
+            drawing: false,
+            clicks: []
         }
     }
     componentDidMount() {
       const canvas = this.refs.canvas
       this.setState({ctx: canvas.getContext('2d')})
-
-      canvas.addEventListener('mousedown', this.startPosition);
-      canvas.addEventListener('mouseup', this.finishedPosition);
-      canvas.addEventListener('mousemove', this.draw)
     }
 
     startPosition = e => {
@@ -40,18 +37,16 @@ class Canvas extends React.Component {
        }
     }
 
-    getMousePosition = (canvas, evt) => {
-            let rect = canvas.getBoundingClientRect();
-            return {
-              x: evt.clientX - rect.left,
-              y: evt.clientY - rect.top
-            };
-    }
-
     render() {
         console.log(this.props)
         return(
-            <canvas ref="canvas" height={window.innerHeight * 0.8} width={window.innerWidth * 0.8}>
+            <canvas ref="canvas" 
+            height={window.innerHeight * 0.8} 
+            width={window.innerWidth * 0.8}
+            onMouseDown={e => this.startPosition(e)}
+            onMouseUp={e => this.finishedPosition(e)}
+            onMouseMove={e => this.draw(e)}
+            >
             </canvas>
         )
     }
