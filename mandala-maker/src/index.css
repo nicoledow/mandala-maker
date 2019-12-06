@@ -24,5 +24,10 @@ code {
 
 canvas {
   border-style: solid;
-  border-color: blueviolet;
+  border-color: #EA526F;
+  margin: 2em;
+}
+
+nav button {
+  background: #FF8A5B;
 }
