@@ -22,6 +22,11 @@ code {
     monospace;
 }
 
+h1 {
+  color: #25CED1;
+  text-align: center;
+}
+
 canvas {
   border-style: solid;
   border-color: #EA526F;
@@ -31,3 +36,5 @@ canvas {
 nav button {
   background: #FF8A5B;
 }
+
+
