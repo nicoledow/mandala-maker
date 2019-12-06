@@ -30,7 +30,6 @@ export default class Canvas extends React.Component {
     draw = e => {
        const canvas = this.refs.canvas;
        let {x, y} = this.getMousePosition(canvas, e);
-       debugger; 
        const ctx = this.state.ctx;
        if (this.state.drawing === true) {
            ctx.lineTo(x, y);
