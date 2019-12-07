@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import ShapesContainer from './ShapesContainer';
 
-class Canvas extends React.Component {
+export default class Canvas extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -60,16 +58,3 @@ class Canvas extends React.Component {
         )
     }
 }
-
-
-const mapStateToProps = state => {
-  return { shapes: state.shapes }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-      addShape: shape => dispatch({ type: 'ADD_SHAPE', shape }),
-    }
-  }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Canvas);
