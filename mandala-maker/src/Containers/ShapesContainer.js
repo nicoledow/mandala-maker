@@ -5,17 +5,17 @@ import { connect } from 'react-redux';
 
 class ShapesContainer extends React.Component {
     state = {
-        currentDrawingShape: ''
+        currentShape: ''
     }
 
     chooseShape = e => {
-        this.setState({ currentDrawingShape: e.target.parentElement.id })
+        this.setState({ currentShape: e.target.parentElement.id })
     }
 
     render(){
         return(
             <div>
-                <Canvas currentDrawingShape={this.state.currentDrawingShape} addShape={this.props.addShape}/>
+                <Canvas currentShape={this.state.currentShape} addShape={this.props.addShape}/>
                 <Toolbar chooseShape={this.chooseShape}/>
             </div>
         )
