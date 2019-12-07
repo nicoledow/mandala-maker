@@ -1,12 +1,10 @@
 import React from 'react';
 import Toolbar from '../Components/Toolbar';
 import Canvas from './Canvas';
+import { connect } from 'react-redux';
 
-export default class ShapesContainer extends React.Component {
+class ShapesContainer extends React.Component {
 
-    state = {
-        drawingEllipse: false
-    }
 
     chooseShape = e => {
         console.log(e)
@@ -21,3 +19,15 @@ export default class ShapesContainer extends React.Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return { shapes: state.shapes }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addShape: shape => dispatch({ type: 'ADD_SHAPE', shape })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShapesContainer);
