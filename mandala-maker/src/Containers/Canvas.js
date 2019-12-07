@@ -73,20 +73,28 @@ export default class Canvas extends React.Component {
     //    }
     // }
 
-    // getMousePosition = (canvas, evt) => {
-    //         let rect = canvas.getBoundingClientRect();
-    //         return {
-    //           x: evt.clientX - rect.left,
-    //           y: evt.clientY - rect.top
-    //         };
-    // }
+    getMousePosition = (canvas, evt) => {
+            let rect = canvas.getBoundingClientRect();
+            return {
+              x: evt.clientX - rect.left,
+              y: evt.clientY - rect.top
+            };
+    }
 
     drawEllipse = e => {
+        const canvas = this.refs.canvas;
         console.log('going to draw ellipse')
+        canvas.addEventListener('click', (e) => {
+            let {x, y} = this.getMousePosition(canvas, e);
+            let ctx = this.state.ctx;
+            ctx.fillStyle = 'blue'; //is this bad because I'm mutating state directly (w/o setState)?
+            ctx.beginPath();
+            ctx.arc(x, y, 50, 0, Math.PI * 2);
+            ctx.fill();
+        })
     }
 
     render() {
-        console.log(this.props)
         return(
             <canvas ref="canvas" height={window.innerHeight * 0.8} width={window.innerWidth * 0.8} />
         )
