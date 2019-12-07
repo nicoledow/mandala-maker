@@ -3,7 +3,7 @@ const handleDrawings = (state = { shapes: [], selectedColor: '' }, action) => {
         case 'ADD_SHAPE':
           return { ...state, shapes: [...state.shapes, action.shape]}
         case 'CHANGE_SELECTED_COLOR':
-          console.log('going to change selected color');
+          return {...state, selectedColor: action.color }
         default:
             return state;
     }
