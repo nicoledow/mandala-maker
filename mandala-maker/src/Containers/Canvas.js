@@ -89,7 +89,7 @@ class Canvas extends React.Component {
             console.log(this.props.selectedColor)
             let {x, y} = this.getMousePosition(canvas, e);
             let ctx = this.state.ctx;
-            ctx.fillStyle = `${this.props.selectedColor}`; //is this bad because I'm mutating state directly (w/o setState)?
+            ctx.fillStyle = 'purple'; //is this bad because I'm mutating state directly (w/o setState)?
             ctx.beginPath();
             ctx.arc(x, y, 50, 0, Math.PI * 2);
             ctx.fill();
