@@ -2,6 +2,8 @@ import React from 'react';
 import Toolbar from '../Components/Toolbar';
 import Canvas from './Canvas';
 import { connect } from 'react-redux';
+import ColorPalette from '../Components/ColorPalette';
+
 
 class ShapesContainer extends React.Component {
     constructor() {
@@ -17,6 +19,7 @@ class ShapesContainer extends React.Component {
         return(
             <div>
                 <Canvas currentShape={this.state.currentShape} addShape={this.props.addShape} />
+                <ColorPalette />
                 <Toolbar chooseShape={this.chooseShape}/>
             </div>
         )
