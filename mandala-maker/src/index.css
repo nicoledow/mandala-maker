@@ -37,4 +37,6 @@ nav button {
   background: #FF8A5B;
 }
 
-
+#color-palette {
+  float: left;
+}
