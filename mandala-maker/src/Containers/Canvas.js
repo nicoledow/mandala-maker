@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ShapesContainer from './ShapesContainer';
 
 class Canvas extends React.Component {
     constructor() {
@@ -7,7 +8,6 @@ class Canvas extends React.Component {
         this.state = {
             ctx: {},
             drawing: false,
-            clicks: []
         }
     }
 
