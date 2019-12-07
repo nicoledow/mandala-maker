@@ -39,4 +39,66 @@ nav button {
 
 #color-palette {
   float: left;
+  margin: 5px;
+}
+
+#color-palette div {
+  color: white;
+  padding: 9px;
+}
+
+.navy-box {
+  background-color: #001f3f;
+}
+
+.blue-box {
+  background-color: #0074d9;
+}
+
+.aqua-box {
+  background-color: #7fdbff;
+}
+
+.olive-box {
+  background-color: #3d9970;
+}
+
+.green-box {
+  background-color: #2ecc40;
+}
+
+.lime-box {
+  background-color: #01ff70;
+}
+
+.yellow-box {
+  background-color: #ffdc00;
+}
+
+.orange-box {
+  background-color: #ff851b;
+}
+
+.purple-box {
+  background-color: #b10dc9;
+}
+
+.fuschia-box {
+  background-color: #f012be;
+}
+
+.red-box {
+  background-color: #ff4136;
+}
+
+.maroon-box {
+  background-color: #85144b;
+}
+
+.gray-box {
+  background-color: #aaaaaa;
+}
+
+.black-box {
+  background-color: #111111;
 }
