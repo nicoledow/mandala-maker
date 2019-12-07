@@ -16,7 +16,7 @@ class ShapesContainer extends React.Component {
     render(){
         return(
             <div>
-                <Canvas currentShape={this.state.currentShape} addShape={this.props.addShape}/>
+                <Canvas currentShape={this.state.currentShape} addShape={this.props.addShape} selectedColor={this.props.selectedColor}/>
                 <Toolbar chooseShape={this.chooseShape}/>
             </div>
         )
