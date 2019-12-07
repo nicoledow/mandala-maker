@@ -16,7 +16,7 @@ class ShapesContainer extends React.Component {
     render(){
         return(
             <div>
-                <Canvas currentShape={this.state.currentShape} addShape={this.props.addShape} selectedColor={this.props.selectedColor}/>
+                <Canvas currentShape={this.state.currentShape} addShape={this.props.addShape} />
                 <Toolbar chooseShape={this.chooseShape}/>
             </div>
         )
@@ -24,7 +24,7 @@ class ShapesContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { shapes: state.shapes, selectedColor: state.selectedColor }
+    return { shapes: state.shapes }
 }
 
 const mapDispatchToProps = dispatch => {
