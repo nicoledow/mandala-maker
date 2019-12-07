@@ -4,8 +4,9 @@ import Canvas from './Canvas';
 import { connect } from 'react-redux';
 
 class ShapesContainer extends React.Component {
-    state = {
-        currentShape: ''
+    constructor() {
+        super();
+        this.state = { currentShape: '' }
     }
 
     chooseShape = e => {
