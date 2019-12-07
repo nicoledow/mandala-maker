@@ -24,7 +24,7 @@ class ShapesContainer extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { shapes: state.shapes }
+    return { shapes: state.shapes, selectedColor: state.selectedColor }
 }
 
 const mapDispatchToProps = dispatch => {
