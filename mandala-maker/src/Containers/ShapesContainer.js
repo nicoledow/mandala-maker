@@ -12,10 +12,6 @@ class ShapesContainer extends React.Component {
         this.setState({ currentDrawingShape: e.target.parentElement.id })
     }
 
-    drawEllipse = e => {
-        console.log('drawing ellipse');
-    }
-
     render(){
         return(
             <div>
