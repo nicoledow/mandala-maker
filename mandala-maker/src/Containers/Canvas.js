@@ -14,6 +14,18 @@ export default class Canvas extends React.Component {
       this.setState({ctx: canvas.getContext('2d')})
     }
 
+    componentDidUpdate() {
+        const canvas = this.refs.canvas;
+        switch(this.props.currentShape){
+          case 'ellipse':
+            canvas.addEventListener('mousedown', this.drawEllipse);
+          default:
+            canvas.addEventListener('mousedown', this.startPosition);
+            canvas.addEventListener('mouseup', this.finishedPosition);
+            canvas.addEventListener('mousemouve', this.draw);
+        }
+    }
+
     startPosition = e => {
         this.setState({drawing: true});
         this.draw(e);
@@ -44,15 +56,16 @@ export default class Canvas extends React.Component {
             };
     }
 
+    drawEllipse = e => {
+        console.log('going to draw ellipse')
+    }
+
     render() {
         console.log(this.props)
         return(
             <canvas ref="canvas" 
             height={window.innerHeight * 0.8} 
             width={window.innerWidth * 0.8}
-            onMouseDown={e => this.startPosition(e)}
-            onMouseUp={e => this.finishedPosition(e)}
-            onMouseMove={e => this.draw(e)}
             >
             </canvas>
         )
