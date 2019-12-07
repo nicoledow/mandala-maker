@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
-import Canvas from './Containers/Canvas';
+import ShapesContainer from './Containers/ShapesContainer';
 import Navbar from './Components/Navbar';
-import Toolbar from './Components/Toolbar';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Canvas />
-      <Toolbar />
+      <ShapesContainer />
     </div>
   );
 }

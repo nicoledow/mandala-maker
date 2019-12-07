@@ -1,5 +1,6 @@
 import React from 'react';
 import Toolbar from '../Components/Toolbar';
+import Canvas from './Canvas';
 
 export default class ShapesContainer extends React.Component {
 
@@ -13,7 +14,10 @@ export default class ShapesContainer extends React.Component {
 
     render(){
         return(
-            <Toolbar chooseShape={this.chooseShape}/>
+            <div>
+                <Canvas />
+                <Toolbar chooseShape={this.chooseShape}/>
+            </div>
         )
     }
 }
