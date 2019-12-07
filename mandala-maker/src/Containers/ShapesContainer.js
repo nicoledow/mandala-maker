@@ -16,9 +16,10 @@ class ShapesContainer extends React.Component {
     }
 
     render(){
+        console.log(this.props)
         return(
             <div>
-                <Canvas currentShape={this.state.currentShape} addShape={this.props.addShape} />
+                <Canvas currentShape={this.state.currentShape} addCircle={this.props.addCircle} />
                 <ColorPalette />
                 <Toolbar chooseShape={this.chooseShape}/>
             </div>
@@ -32,7 +33,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addShape: shape => dispatch({ type: 'ADD_SHAPE', shape })
+        addCircle: circle => dispatch({ type: 'ADD_CIRCLE', circle })
     }
 }
 

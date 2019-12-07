@@ -1,7 +1,8 @@
-const handleDrawings = (state = { shapes: [], selectedColor: '' }, action) => {
+const handleDrawings = (state = { shapes: { circles: [] }, selectedColor: '' }, action) => {
     switch(action.type) {
-        case 'ADD_SHAPE':
-          return { ...state, shapes: [...state.shapes, action.shape]}
+        case 'ADD_CIRCLE':
+          console.log(action)
+          return { ...state, shapes: {...state.shapes, circles: [...state.shapes.circles, action.circle]}}
         case 'CHANGE_SELECTED_COLOR':
           console.log('made it to reducer')
           return {...state, selectedColor: action.color }

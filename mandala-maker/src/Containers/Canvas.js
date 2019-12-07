@@ -91,9 +91,23 @@ class Canvas extends React.Component {
             let ctx = this.state.ctx;
             ctx.fillStyle = `${this.props.selectedColor}`; //is this bad because I'm mutating state directly (w/o setState)?
             ctx.beginPath();
-            ctx.arc(x, y, 50, 0, Math.PI * 2);
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
             ctx.fill();
         })
+        canvas.addEventListener('mouseup', e => {
+            this.saveShape(e, 'ellipse');
+        })
+    }
+
+    saveShape = (e, shapeType) => {
+        let {x, y} = this.getMousePosition(this.refs.canvas, e)
+        switch(shapeType) {
+            case 'ellipse':
+              this.props.addCircle({x, y, radius: 10})
+              return;
+            default:
+              return;
+        }
     }
 
     render() {
@@ -108,3 +122,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(Canvas);
+
