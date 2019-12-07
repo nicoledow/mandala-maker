@@ -1,3 +1,8 @@
+// Free draw:
+// mousedown - startPosition
+// mouseup - finishedPosition
+// mousemove - draw
+
 import React from 'react';
 
 export default class Canvas extends React.Component {
@@ -20,11 +25,13 @@ export default class Canvas extends React.Component {
           case 'ellipse':
             canvas.addEventListener('mousedown', this.drawEllipse);
           default:
-            canvas.addEventListener('mousedown', this.startPosition);
+            canvas.addEventListener('mousedown', this.startPosition); //not working - why???
             canvas.addEventListener('mouseup', this.finishedPosition);
             canvas.addEventListener('mousemouve', this.draw);
+            break;
         }
     }
+
 
     startPosition = e => {
         this.setState({drawing: true});
@@ -63,11 +70,7 @@ export default class Canvas extends React.Component {
     render() {
         console.log(this.props)
         return(
-            <canvas ref="canvas" 
-            height={window.innerHeight * 0.8} 
-            width={window.innerWidth * 0.8}
-            >
-            </canvas>
+            <canvas ref="canvas" height={window.innerHeight * 0.8} width={window.innerWidth * 0.8} />
         )
     }
 }
