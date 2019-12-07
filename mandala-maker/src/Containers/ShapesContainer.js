@@ -8,7 +8,6 @@ class ShapesContainer extends React.Component {
         currentDrawingShape: ''
     }
 
-
     chooseShape = e => {
         this.setState({ currentDrawingShape: e.target.parentElement.id })
     }
@@ -18,10 +17,9 @@ class ShapesContainer extends React.Component {
     }
 
     render(){
-        console.log(this.state)
         return(
             <div>
-                <Canvas currentDrawingShape={this.state.currentDrawingShape} />
+                <Canvas currentDrawingShape={this.state.currentDrawingShape} addShape={this.props.addShape}/>
                 <Toolbar chooseShape={this.chooseShape}/>
             </div>
         )
