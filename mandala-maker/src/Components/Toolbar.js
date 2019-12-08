@@ -7,9 +7,9 @@ class Toolbar extends React.Component {
         return(
             <nav>
                 <button id="undo" onClick={this.props.undo}><i class="fas fa-undo"></i></button>
-                <button id="ellipse" onClick={this.props.changeSelectedShape('ellipse')}><i class="far fa-circle"></i></button>
-                <button id="square" onClick={this.props.changeSelectedShape('square')}><i class="far fa-square"></i></button>
-                <button id="triangle" onClick={this.props.changeSelectedShape('triangle')}>▲</button>
+                <button id="ellipse" onClick={e => this.props.changeSelectedShape(e.target.parentElement.id)}><i class="far fa-circle"></i></button>
+                <button id="square"  onClick={e => this.props.changeSelectedShape(e.target.parentElement.id)}><i class="far fa-square"></i></button>
+                <button id="triangle"  onClick={e => this.props.changeSelectedShape(e.target.parentElement.id)}>▲</button>
             </nav>
         )
     }
