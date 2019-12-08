@@ -1,8 +1,9 @@
 //has props: shape, selectedColor, currentShape (received from parent container, ShapesContainer/store)
 
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class Canvas extends React.Component {
+class Canvas extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -24,8 +25,7 @@ export default class Canvas extends React.Component {
 
   chooseDrawingMode = (currentShape = this.props.currentShape) => {
     const canvas = document.getElementById('canvas');
-    console.log('in chooseDrawingMode')
-    console.log(this.props.currentShape)
+
     switch(currentShape){
         case 'ellipse':
             canvas.addEventListener('mousedown', this.drawEllipse);
@@ -47,6 +47,7 @@ export default class Canvas extends React.Component {
         ctx.beginPath();
         ctx.arc(x, y, 10, 0, Math.PI * 2);
         ctx.fill();
+        this.props.addEllipse({ shapeType: 'ellipse', x, y, radius: 10})
     })
   }
 
@@ -71,3 +72,5 @@ const mapDispatchToProps = dispatch => {
     addEllipse: ellipse => dispatch({ type: 'ADD_ELLIPSE', ellipse})
   }
 }
+
+export default connect(null, mapDispatchToProps)(Canvas);
