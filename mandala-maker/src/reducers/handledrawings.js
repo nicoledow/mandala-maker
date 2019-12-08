@@ -1,4 +1,4 @@
-const handleDrawings = (state = { shapes: [], selectedColor: '' }, action) => {
+const handleDrawings = (state = { shapes: [], selectedColor: '', currentShape: '' }, action) => {
     switch(action.type) {
         case 'ADD_CIRCLE':
           //return { ...state, shapes: {...state.shapes, circles: [...state.shapes.circles, action.circle]}}

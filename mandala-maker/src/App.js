@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import ShapesContainer from './Containers/ShapesContainer';
 import Navbar from './Components/Navbar';
+import Workspace from './Containers/Workspace';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <ShapesContainer />
+      <Workspace />
     </div>
   );
 }

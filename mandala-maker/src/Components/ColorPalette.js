@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 class ColorPalette extends React.Component {
-    
+
     pickColor = e => {
-      this.props.changeSelectedColor(e.target.id)
+      this.props.changeSelectedColor(e.target.id);
     }
 
     render() {
@@ -30,10 +30,14 @@ class ColorPalette extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+  return { selectedColor: state.selectedColor }
+}
+
 const mapDispatchToProps = dispatch => {
   return { 
       changeSelectedColor: color => dispatch({ type: 'CHANGE_SELECTED_COLOR', color})
   }
 }
 
-export default connect(null, mapDispatchToProps)(ColorPalette);
+export default connect(mapStateToProps, mapDispatchToProps)(ColorPalette);
