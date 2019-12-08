@@ -6,9 +6,11 @@ import { connect } from 'react-redux';
 class ShapesContainer extends React.Component {
 
     render() {
+        return (
         <Canvas shapes={this.props.shapes}
         selectedColor={this.props.selectedColor}
         currentShape={this.props.currentShape} />
+        )
     }
 }
 
