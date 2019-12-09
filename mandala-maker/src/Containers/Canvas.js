@@ -11,6 +11,7 @@ class Canvas extends React.Component {
       drawing: false
     }
   }
+
   componentDidMount () {
     console.log('componentDidMount');
     window.addEventListener('load', () => {
@@ -21,61 +22,44 @@ class Canvas extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('in componentDidUpdate', this.props);
+    console.log('componentDidUpdate', this.props);
     this.chooseDrawingMode(this.props.currentShape);
   }
 
-
   chooseDrawingMode = (currentShape = this.props.currentShape) => {
-    console.log('chooseDrawingMode');
+    console.log('inside chooseDrawingMode');
     const canvas = document.getElementById('canvas');
 
     switch(currentShape){
-        case 'ellipse':
-            console.log('adding event listener for ellipse')
-            canvas.addEventListener('mousedown', e => {
-              ('canvas heard mousedown')
-              let {x, y} = this.getMousePosition(canvas, e);
-              this.setState({ startX: x, startY: y });
-              this.beginEllipse();
-            });
+        case 'line':
+          console.log('going to draw a line')
+          document.addEventListener('click', e => {
+            this.setState({ click1: this.getMousePosition(canvas, e) });
+            console.log('click1', this.state.click1)
+            document.addEventListener('click', e => {
+              this.setState({ click2: this.getMousePosition(canvas, e) });
+              console.log('click2', this.state.click2)
+              this.drawLine();
+            })
+          });
         default:
             return;
     }
   }
 
-  beginEllipse = () => {
-    console.log('in beginEllipse')
-    const canvas = document.getElementById('canvas');
-    document.addEventListener('mouseup', e => {
-      console.log('canvas heard mouseup')
-      let {x, y} = this.getMousePosition(canvas, e);
-      this.setState({ endX: x, endY: y });
-      this.createEllipse();
-    })
-  }
+  drawLine = e => {
+    console.log('made it to drawLine', this.state)
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
 
-  createEllipse = () => {
-    console.log('in createEllipse fn');
-    let midpointX = (this.state.startX + this.state.endX) / 2;
-    let midpointY = (this.state.startY + this.state.endY) / 2;
-    let ctx = this.state.ctx;
-    let radius = this.getRadius(this.state.startX, this.state.startY, this.state.endX, this.state.endY) 
-
-    ctx.beginPath();
-    ctx.arc(midpointX, midpointY, radius, 0, Math.PI * 2.0);
-    ctx.fillStyle = this.props.selectedColor;
-    ctx.fill();
+    ctx.lineTo(this.state.click1.x, this.state.click1.y);
+    ctx.lineTo(this.state.click2.x, this.state.click2.y);
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 10;
+    ctx.stroke();
     
-    this.props.addEllipse({ 
-      shapeType: 'ellipse', 
-      x: midpointX, 
-      y: midpointY, 
-      radius, 
-      color: this.props.selectedColor
-    })
+    console.log('theoretically we drew a line');
   }
-  
 
   getMousePosition = (canvas, evt) => {
     let rect = canvas.getBoundingClientRect();
