@@ -28,7 +28,6 @@ class Canvas extends React.Component {
 
     switch(currentShape){
         case 'ellipse':
-            //canvas.addEventListener('mousedown', this.drawEllipse);
             canvas.addEventListener('mousedown', e => {
               let {x, y} = this.getMousePosition(canvas, e);
               this.setState({ startX: x, startY: y });
@@ -50,8 +49,6 @@ class Canvas extends React.Component {
   }
 
   createEllipse = () => {
-    console.log('in createEllipse fn');
-    const canvas = document.getElementById('canvas');
     let midpointX = (this.state.startX + this.state.endX) / 2;
     let midpointY = (this.state.startY + this.state.endY) / 2;
     let ctx = this.state.ctx;
@@ -61,10 +58,7 @@ class Canvas extends React.Component {
     ctx.beginPath();
     ctx.arc(midpointX, midpointY, radius, 0, Math.PI * 2.0);
     ctx.fill();
-    console.log('startX', this.state.startX)
-    console.log('startY', this.state.startY)
-    console.log('midpointX', midpointX)
-    console.log('midpointY', midpointY)
+    
     this.props.addEllipse({ shapeType: 'ellipse', x: midpointX, y: midpointY, radius})
   }
   
@@ -82,7 +76,6 @@ class Canvas extends React.Component {
   }
 
   render() {
-    console.log('canvas rendering')
     return (
       <canvas id="canvas" height={window.innerHeight * 0.8} width={window.innerWidth * 0.8} />
     )
