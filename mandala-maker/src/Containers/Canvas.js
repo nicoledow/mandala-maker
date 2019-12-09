@@ -16,10 +16,12 @@ class Canvas extends React.Component {
     this.drawCenterCircle();    
   }
 
+  //returns coordinates of canvas center as [x, y]
   getCenter = canvas => {
     return [(canvas.width / 2), (canvas.height / 2)]
   }
 
+  //draws stroked circle at center of canvas
   drawCenterCircle = () => {
     let canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
@@ -31,6 +33,7 @@ class Canvas extends React.Component {
     ctx.stroke()
   }
 
+  //returns position of mouse (adjusted for canvas offset) as { x: value, y: value }
   getMousePosition = (canvas, evt) => {
     let rect = canvas.getBoundingClientRect();
     return {
