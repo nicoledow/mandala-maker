@@ -12,6 +12,7 @@ class Canvas extends React.Component {
     }
   }
   componentDidMount () {
+    console.log('componentDidMount');
     window.addEventListener('load', () => {
       const canvas = document.getElementById('canvas');
       this.setState({ ctx: canvas.getContext('2d')});
@@ -21,48 +22,33 @@ class Canvas extends React.Component {
 
   componentDidUpdate() {
     console.log('in componentDidUpdate', this.props);
-    this.chooseDrawingMode(this.props.shapes);
+    this.chooseDrawingMode(this.props.currentShape);
   }
 
-  clearCanvas = ctx => {
-    ctx.clearRect(0, 0, window.innerWidth * 0.8, window.innerHeight * 0.8)
-  }
-
-  redraw = (shapes, ctx) => {
-    //iterate through shapes from state and render to canvas
-    shapes.forEach(shape => {
-      switch(shape.shapeType){
-        case 'ellipse':
-          ctx.beginPath();
-          ctx.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2)
-          ctx.fillStyle = shape.color;
-          ctx.fill();
-          break; //should I or shouldn't I have 'break' here?
-        default:
-          return;
-      }
-    })
-  }
 
   chooseDrawingMode = (currentShape = this.props.currentShape) => {
+    console.log('chooseDrawingMode');
     const canvas = document.getElementById('canvas');
 
     switch(currentShape){
         case 'ellipse':
+            console.log('adding event listener for ellipse')
             canvas.addEventListener('mousedown', e => {
+              ('canvas heard mousedown')
               let {x, y} = this.getMousePosition(canvas, e);
               this.setState({ startX: x, startY: y });
               this.beginEllipse();
             });
-            //break;
         default:
             return;
     }
   }
 
   beginEllipse = () => {
+    console.log('in beginEllipse')
     const canvas = document.getElementById('canvas');
     document.addEventListener('mouseup', e => {
+      console.log('canvas heard mouseup')
       let {x, y} = this.getMousePosition(canvas, e);
       this.setState({ endX: x, endY: y });
       this.createEllipse();
@@ -70,14 +56,15 @@ class Canvas extends React.Component {
   }
 
   createEllipse = () => {
+    console.log('in createEllipse fn');
     let midpointX = (this.state.startX + this.state.endX) / 2;
     let midpointY = (this.state.startY + this.state.endY) / 2;
     let ctx = this.state.ctx;
     let radius = this.getRadius(this.state.startX, this.state.startY, this.state.endX, this.state.endY) 
 
-    ctx.fillStyle = this.props.selectedColor;
     ctx.beginPath();
     ctx.arc(midpointX, midpointY, radius, 0, Math.PI * 2.0);
+    ctx.fillStyle = this.props.selectedColor;
     ctx.fill();
     
     this.props.addEllipse({ 
@@ -103,6 +90,7 @@ class Canvas extends React.Component {
   }
 
   render() {
+    console.log('canvas rendering')
     return (
       <canvas id="canvas" height={window.innerHeight * 0.8} width={window.innerWidth * 0.8} />
     )
