@@ -68,19 +68,6 @@ class Canvas extends React.Component {
     this.props.addEllipse({ shapeType: 'ellipse', x: midpointX, y: midpointY, radius})
   }
   
-  drawEllipse = e => {
-    const canvas = document.getElementById('canvas');
-    canvas.addEventListener('click', (e) => {
-        console.log(this.props.selectedColor)
-        let {x, y} = this.getMousePosition(canvas, e);
-        let ctx = this.state.ctx;
-        ctx.fillStyle = 'pink'; //is this bad because I'm mutating state directly (w/o setState)?
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, Math.PI * 2);
-        ctx.fill();
-        //this.props.addEllipse({ shapeType: 'ellipse', x, y, radius: 10})
-    })
-  }
 
   getMousePosition = (canvas, evt) => {
     let rect = canvas.getBoundingClientRect();
