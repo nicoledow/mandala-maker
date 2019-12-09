@@ -10,7 +10,7 @@ class Toolbar extends React.Component {
                 <button id="ellipse" onClick={e => this.props.changeSelectedShape(e.target.parentElement.id)}><i class="far fa-circle"></i></button>
                 <button id="square" onClick={e => this.props.changeSelectedShape(e.target.parentElement.id)}><i class="far fa-square"></i></button>
                 <button id="triangle" onClick={e => this.props.changeSelectedShape(e.target.parentElement.id)}>▲</button>
-                <button id="line" onClick={e => this.props.changeSelectedShape(e.target.parentElement.id)}><strong>/</strong></button>
+                <button id="line" onClick={e => this.props.changeSelectedShape(e)}><strong>/</strong></button>
             </nav>
         )
     }
@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        changeSelectedShape: shape => dispatch({ type: 'CHANGE_SELECTED_SHAPE', shape}),
+        changeSelectedShape: e => dispatch({ type: 'CHANGE_SELECTED_SHAPE', shape: e.target.parentElement.id}),
         undo: () => dispatch({ type: 'UNDO' })
     }
 }
