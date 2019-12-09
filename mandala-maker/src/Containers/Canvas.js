@@ -7,12 +7,25 @@ class Canvas extends React.Component {
   constructor() {
     super();
     this.state = {
-      ctx: {},
+      //ctx: {},
       drawing: false
     }
   }
 
-  
+  //when Canvas Component mounts, draw a circle in the middle as the mandala starting point
+  componentDidMount() {
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+  }
+
+  getMousePosition = (canvas, evt) => {
+    let rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+  }
 
   render() {
     return (
