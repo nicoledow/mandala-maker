@@ -1,4 +1,4 @@
-//has props: shape, selectedColor, currentShape (received from parent container, ShapesContainer/store)
+//has props: shapes, selectedColor, currentShape (received from parent container, ShapesContainer/store)
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -20,7 +20,28 @@ class Canvas extends React.Component {
   }
 
   componentDidUpdate() {
-    this.chooseDrawingMode(this.props.currentShape);
+    console.log('in componentDidUpdate', this.props);
+    this.chooseDrawingMode(this.props.shapes);
+  }
+
+  clearCanvas = ctx => {
+    ctx.clearRect(0, 0, window.innerWidth * 0.8, window.innerHeight * 0.8)
+  }
+
+  redraw = (shapes, ctx) => {
+    //iterate through shapes from state and render to canvas
+    shapes.forEach(shape => {
+      switch(shape.shapeType){
+        case 'ellipse':
+          ctx.beginPath();
+          ctx.arc(shape.x, shape.y, shape.radius, 0, Math.PI * 2)
+          ctx.fillStyle = shape.color;
+          ctx.fill();
+          break; //should I or shouldn't I have 'break' here?
+        default:
+          return;
+      }
+    })
   }
 
   chooseDrawingMode = (currentShape = this.props.currentShape) => {
@@ -33,7 +54,7 @@ class Canvas extends React.Component {
               this.setState({ startX: x, startY: y });
               this.beginEllipse();
             });
-            break;
+            //break;
         default:
             return;
     }
@@ -54,12 +75,18 @@ class Canvas extends React.Component {
     let ctx = this.state.ctx;
     let radius = this.getRadius(this.state.startX, this.state.startY, this.state.endX, this.state.endY) 
 
-    ctx.fillStyle = 'pink';
+    ctx.fillStyle = this.props.selectedColor;
     ctx.beginPath();
     ctx.arc(midpointX, midpointY, radius, 0, Math.PI * 2.0);
     ctx.fill();
     
-    this.props.addEllipse({ shapeType: 'ellipse', x: midpointX, y: midpointY, radius})
+    this.props.addEllipse({ 
+      shapeType: 'ellipse', 
+      x: midpointX, 
+      y: midpointY, 
+      radius, 
+      color: this.props.selectedColor
+    })
   }
   
 
