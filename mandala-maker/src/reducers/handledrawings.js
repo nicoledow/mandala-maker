@@ -1,7 +1,6 @@
 const handleDrawings = (state = { shapes: [], selectedColor: '', currentShape: '' }, action) => {
     switch(action.type) {
         case 'ADD_ELLIPSE':
-          console.log('hit ADDELLIPSE in reducer')
           return {...state, shapes: [...state.shapes, action.circle]}
         case 'CHANGE_SELECTED_COLOR':
           return {...state, selectedColor: action.color }
