@@ -7,16 +7,28 @@ class Canvas extends React.Component {
   constructor() {
     super();
     this.state = {
-      //ctx: {},
-      drawing: false
+      drawing: false,
     }
   }
 
   //when Canvas Component mounts, draw a circle in the middle as the mandala starting point
   componentDidMount() {
+    this.drawCenterCircle();    
+  }
+
+  getCenter = canvas => {
+    return [(canvas.width / 2), (canvas.height / 2)]
+  }
+
+  drawCenterCircle = () => {
     let canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
+    const [centerX, centerY] = this.getCenter(canvas);
 
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 13, 0, Math.PI * 2)
+    ctx.strokeStyle = 'black';
+    ctx.stroke()
   }
 
   getMousePosition = (canvas, evt) => {
@@ -28,6 +40,8 @@ class Canvas extends React.Component {
   }
 
   render() {
+    console.log(this.props)
+
     return (
       <canvas id="canvas" height={window.innerHeight * 0.8} width={window.innerWidth * 0.8} />
     )

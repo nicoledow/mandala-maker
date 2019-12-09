@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        changeSelectedShape: e => dispatch({ type: 'CHANGE_SELECTED_SHAPE', shape: e.target.parentElement.id}),
+        changeSelectedShape: shape => dispatch({ type: 'CHANGE_SELECTED_SHAPE', shape }),
         undo: () => dispatch({ type: 'UNDO' })
     }
 }
